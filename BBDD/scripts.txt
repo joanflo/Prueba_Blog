@@ -1,0 +1,84 @@
+SET @OLD_UNIQUE_CHECKS=@@UNIQUE_CHECKS, UNIQUE_CHECKS=0;
+SET @OLD_FOREIGN_KEY_CHECKS=@@FOREIGN_KEY_CHECKS, FOREIGN_KEY_CHECKS=0;
+SET @OLD_SQL_MODE=@@SQL_MODE, SQL_MODE='TRADITIONAL,ALLOW_INVALID_DATES';
+
+-- -----------------------------------------------------
+-- Schema jflorit_prueba_blog
+-- -----------------------------------------------------
+DROP SCHEMA IF EXISTS `jflorit_prueba_blog` ;
+CREATE SCHEMA IF NOT EXISTS `jflorit_prueba_blog` DEFAULT CHARACTER SET utf8 COLLATE utf8_general_ci ;
+USE `jflorit_prueba_blog` ;
+
+-- -----------------------------------------------------
+-- Table `jflorit_prueba_blog`.`usuario`
+-- -----------------------------------------------------
+DROP TABLE IF EXISTS `jflorit_prueba_blog`.`usuario` ;
+
+CREATE TABLE IF NOT EXISTS `jflorit_prueba_blog`.`usuario` (
+  `email` VARCHAR(255) NOT NULL,
+  `username` VARCHAR(16) NOT NULL,
+  `password` BINARY(16) NOT NULL,
+  `create_time` TIMESTAMP NOT NULL DEFAULT CURRENT_TIMESTAMP,
+  `status` VARCHAR(1) NOT NULL DEFAULT 'n',
+  PRIMARY KEY (`email`),
+  UNIQUE INDEX `username_UNIQUE` (`username` ASC));
+
+
+-- -----------------------------------------------------
+-- Table `jflorit_prueba_blog`.`post`
+-- -----------------------------------------------------
+DROP TABLE IF EXISTS `jflorit_prueba_blog`.`post` ;
+
+CREATE TABLE IF NOT EXISTS `jflorit_prueba_blog`.`post` (
+  `id_post` INT NOT NULL AUTO_INCREMENT,
+  `titulo` VARCHAR(100) NOT NULL,
+  `contenido` VARCHAR(5000) NOT NULL,
+  `create_time` TIMESTAMP NOT NULL DEFAULT CURRENT_TIMESTAMP,
+  `status` VARCHAR(1) NOT NULL DEFAULT 'b',
+  `email_creador` VARCHAR(255) NOT NULL,
+  `email_admin` VARCHAR(255) NULL,
+  PRIMARY KEY (`id_post`),
+  INDEX `fk_post_usuario_creador_idx` (`email_creador` ASC),
+  INDEX `fk_post_usuario_admin_idx` (`email_admin` ASC),
+  CONSTRAINT `fk_post_usuario_creador`
+    FOREIGN KEY (`email_creador`)
+    REFERENCES `jflorit_prueba_blog`.`usuario` (`email`)
+    ON DELETE NO ACTION
+    ON UPDATE NO ACTION,
+  CONSTRAINT `fk_post_usuario_admin`
+    FOREIGN KEY (`email_admin`)
+    REFERENCES `jflorit_prueba_blog`.`usuario` (`email`)
+    ON DELETE NO ACTION
+    ON UPDATE NO ACTION)
+ENGINE = InnoDB;
+
+
+SET SQL_MODE=@OLD_SQL_MODE;
+SET FOREIGN_KEY_CHECKS=@OLD_FOREIGN_KEY_CHECKS;
+SET UNIQUE_CHECKS=@OLD_UNIQUE_CHECKS;
+
+-- -----------------------------------------------------
+-- Data for table `jflorit_prueba_blog`.`usuario`
+-- -----------------------------------------------------
+START TRANSACTION;
+USE `jflorit_prueba_blog`;
+INSERT INTO `jflorit_prueba_blog`.`usuario` (`email`, `username`, `password`, `create_time`, `status`) VALUES ('joan.g.florit@gmail.com', 'joanflo', MD5('password1'), NULL, 'a');
+INSERT INTO `jflorit_prueba_blog`.`usuario` (`email`, `username`, `password`, `create_time`, `status`) VALUES ('cgonzalez@kitmaker.com', 'cgonzalez', MD5('password2'), NULL, 'n');
+INSERT INTO `jflorit_prueba_blog`.`usuario` (`email`, `username`, `password`, `create_time`, `status`) VALUES ('xcunill@kitmaker.com', 'xcunill', MD5('password3'), NULL, 'n');
+
+COMMIT;
+
+
+-- -----------------------------------------------------
+-- Data for table `jflorit_prueba_blog`.`post`
+-- -----------------------------------------------------
+START TRANSACTION;
+USE `jflorit_prueba_blog`;
+INSERT INTO `jflorit_prueba_blog`.`post` (`id_post`, `titulo`, `contenido`, `create_time`, `status`, `email_creador`, `email_admin`) VALUES (1, 'Lorem ipsum 1', 'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Proin auctor urna non arcu blandit mattis. Aenean tristique purus diam, at luctus augue faucibus ac. Etiam in sapien interdum, imperdiet ipsum in, facilisis massa. Suspendisse ut condimentum purus. Donec molestie dapibus lacus, et bibendum nisi lobortis vel. In nulla est, tempus ac felis eget, pharetra ornare magna. Donec non lorem lacus. Nunc blandit, ipsum sed facilisis convallis, nibh mi sollicitudin augue, et condimentum leo est sed velit. Integer vitae auctor odio. Donec posuere, ipsum et tincidunt scelerisque, elit magna convallis neque, ac gravida massa risus eget lacus. Aliquam blandit nulla nec luctus tempor. Duis rutrum pulvinar sapien vel mollis.', NULL, 'p', 'joan.g.florit@gmail.com', 'joan.g.florit@gmail.com');
+INSERT INTO `jflorit_prueba_blog`.`post` (`id_post`, `titulo`, `contenido`, `create_time`, `status`, `email_creador`, `email_admin`) VALUES (2, 'Lorem ipsum 2', 'Donec ut elit sit amet nibh facilisis gravida. Vestibulum pretium augue eu tortor luctus placerat. Curabitur at diam diam. Donec libero nunc, imperdiet vel nulla ut, bibendum dignissim lacus. Maecenas eu eros magna. Donec suscipit libero urna, ut pretium lacus tristique sit amet. Aliquam sem ex, porta non tincidunt et, dignissim sed diam. In faucibus urna vitae aliquam feugiat. Quisque vehicula enim et libero pharetra aliquam. Nullam quis mollis arcu, cursus aliquam massa. Pellentesque habitant morbi tristique senectus et netus et malesuada fames ac turpis egestas. Ut ac elementum velit. Ut eget laoreet orci. Praesent malesuada luctus neque sit amet auctor. Sed consequat, lectus vestibulum fermentum sollicitudin, felis urna vehicula tellus, in elementum nunc augue vel nulla.', NULL, 'p', 'cgonzalez@kitmaker.com', 'joan.g.florit@gmail.com');
+INSERT INTO `jflorit_prueba_blog`.`post` (`id_post`, `titulo`, `contenido`, `create_time`, `status`, `email_creador`, `email_admin`) VALUES (3, 'Lorem ipsum 3', 'Sed nibh dui, varius in placerat vel, tincidunt sit amet ex. Maecenas vehicula mi nunc, nec semper arcu gravida sit amet. Nunc et lorem dolor. Curabitur consectetur lacus a ipsum viverra, sit amet posuere orci dignissim. Curabitur malesuada, tortor dictum viverra tincidunt, erat est volutpat eros, id ultrices lacus nisi sit amet ante. Phasellus arcu neque, consequat eu eros ut, efficitur pharetra augue.', NULL, 'p', 'xcunill@kitmaker.com', 'joan.g.florit@gmail.com');
+INSERT INTO `jflorit_prueba_blog`.`post` (`id_post`, `titulo`, `contenido`, `create_time`, `status`, `email_creador`, `email_admin`) VALUES (4, 'Lorem ipsum 4', 'Quisque eu nisl nec enim porta tempor et in neque. Aenean rhoncus tortor ut lacus posuere tincidunt. Lorem ipsum dolor sit amet, consectetur adipiscing elit. Cras scelerisque dictum lorem sit amet bibendum. Aliquam et scelerisque dui. Duis mauris ipsum, pulvinar sed semper ac, finibus elementum velit. Curabitur vestibulum porttitor metus in euismod. Pellentesque habitant morbi tristique senectus et netus et malesuada fames ac turpis egestas. Donec et accumsan nibh.', NULL, 'b', 'cgonzalez@kitmaker.com', NULL);
+INSERT INTO `jflorit_prueba_blog`.`post` (`id_post`, `titulo`, `contenido`, `create_time`, `status`, `email_creador`, `email_admin`) VALUES (5, 'Lorem ipsum 5', 'Sed faucibus urna metus, nec congue elit aliquam eu. Sed porta consectetur tellus quis fermentum. In hac habitasse platea dictumst. Vivamus posuere enim eget vestibulum laoreet. Mauris eu magna mattis, scelerisque nibh non, rhoncus mi. Nunc et tellus rutrum, pellentesque nisi id, consectetur purus. Suspendisse potenti.', NULL, 'c', 'xcunill@kitmaker.com', 'joan.g.florit@gmail.com');
+
+COMMIT;
+

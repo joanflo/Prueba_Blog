@@ -1,0 +1,213 @@
+
+body {
+	margin: 0px;
+	padding: 0px;
+}
+
+#content {
+	width: 1000px;
+	margin: auto;
+}
+
+.barra_separadora {
+	position: relative;
+	clear: both;
+	margin-top: 25px;
+	margin-bottom: 25px;
+	height: 3px;
+	border-radius: 1px;
+	background-color: #EEEEEE;
+}
+
+
+
+/******************************************************/
+/*********************** HEADER ***********************/
+/******************************************************/
+
+
+header.cabezera {
+	margin-top: 30px;
+}
+
+img.cabezera {
+	width: 150px;
+	border-width: 0px;
+	float: left;
+}
+
+h1.cabezera {
+	font-size: 50px;
+	margin-top: 0px;
+	text-align: center;
+	color: #333333;
+}
+
+h2.cabezera {
+	text-align: center;
+	color: #333333;
+}
+
+div.cabezera {
+	float: left;
+}
+
+div.cabezera1 {
+	width: 550px;
+	padding: 25px;
+}
+
+div.cabezera2 {
+	width: 250px;
+}
+
+
+div.icono {
+	width: 250px;
+	clear: both;
+	margin-bottom: 15px;
+}
+
+img.icono {
+	float: left;
+	width: 30px;
+	margin-right: 10px;
+}
+
+p.icono {
+	margin: 0px;
+	color: #333333;
+}
+p.icono1 {
+	height: 30px;
+	line-height: 30px;
+}
+p.icono2 {
+	height: 20px;
+	line-height: 15px;
+}
+
+
+/******************************************************/
+/************************ BODY ************************/
+/******************************************************/
+
+nav.opciones {
+	clear: both;
+}
+
+#cos {
+	
+}
+
+div.post {
+	clear: both;
+	width: 750px;
+	height: 120px;
+	margin: 50px 0px 0px 200px;
+	
+	padding: 25px;
+	border-radius: 20px;
+	
+	background-color: #BDDFFF;
+}
+
+div.post_izq {
+	width: 450px;
+	float: left;
+}
+
+div.post_der {
+	width: 250px;
+	margin-left: 50px;
+	float: left;
+}
+
+h3.post {
+	margin: 0px 0px 27px 0px;
+	font-size: 30px;
+	color: #156C95;
+}
+
+p.post {
+	height: 50px;
+	padding: 5px;
+	color: #333333;
+}
+
+div.post_contenido {
+	height: 63px;
+	width: 10px;
+	margin-right: 15px;
+	float: left;
+	background-color: #156C95;
+}
+
+input.campo_formulario {
+	position: relative;
+	width: 255px;
+	left: 5px;
+	padding: 8px;
+	
+	border-style: dotted;
+	border-color: #000000;
+	border-width: 2px;
+}
+
+textarea.campo_formulario {
+	position: relative;
+	width: 255px;
+	left: 5px;
+	padding: 9px;
+	
+	border-style: dotted;
+	border-color: #000000;
+	border-width: 2px;
+}
+
+.boton1 {
+	display: block;
+	width: 250px;
+	height: 30px;
+	line-height: 30px;
+	text-align: center;
+	text-decoration: none;
+}
+.boton2 {
+	float: right;
+	margin: 0px 0px 50px 25px;
+	display: block;
+	width: 180px;
+	height: 40px;
+	line-height: 40px;
+	text-align: center;
+	text-decoration: none;
+}
+.boton_generico {
+	position: relative;
+	color: #FFFFFF;
+	font-weight: bold;
+	
+	border-style: dotted;
+	border-color: #000000;
+	border-width: 2px;
+	cursor: pointer;
+	border-radius: 8px;
+	background-color: #156C95;
+}
+.boton_generico:hover {
+	background-color: #333333;
+}
+
+
+
+/******************************************************/
+/*********************** FOOTER ***********************/
+/******************************************************/
+
+#footer_blog {
+	position: relative;
+	font-size: 12px;
+	text-align: center;
+	color: #333333;
+}

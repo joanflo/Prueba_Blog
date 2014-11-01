@@ -1,0 +1,1 @@
+<p>Post creado correctamente</p>
