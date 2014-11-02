@@ -39,13 +39,23 @@
 */
 
 
+$route['blog/create'] = 'blog/create';
+$route['blog/verify'] = 'blog/verify';
+$route['blog/(:any)'] = 'blog/view/$1';
+$route['blog'] = 'blog';
+$route['(:any)'] = 'pages/view/$1';
+$route['default_controller'] = 'pages/view';
+
+/*
 $route['posts/create'] = 'posts/create';
+$route['posts/posts/create'] = 'posts/create';
+$route['posts/posts'] = 'posts';
 $route['posts/(:any)'] = 'posts/view/$1';
 $route['posts'] = 'posts';
 $route['usuarios/verify'] = 'posts';
 $route['(:any)'] = 'pages/view/$1';
 $route['default_controller'] = 'pages/view';
-
+*/
 
 /* End of file routes.php */
 /* Location: ./application/config/routes.php */

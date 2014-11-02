@@ -19,6 +19,31 @@ body {
 	background-color: #EEEEEE;
 }
 
+.dialogo {
+	display: block;
+}
+
+input.text_dialogo {
+	margin-bottom: 12px;
+	width: 95%;
+	padding: .4em;
+}
+
+fieldset {
+	padding: 0;
+	border:0;
+	margin-top:25px;
+}
+
+.ui-dialog .ui-state-error {
+	padding: .3em;
+}
+
+.validateTips {
+	border: 1px solid transparent;
+	padding: 0.3em;
+}
+
 
 
 /******************************************************/
@@ -112,6 +137,18 @@ div.post {
 	background-color: #BDDFFF;
 }
 
+div.post_completo {
+	clear: both;
+	width: 750px;
+	height: 250px;
+	margin: 50px 0px 0px 200px;
+	
+	padding: 25px;
+	border-radius: 20px;
+	
+	background-color: #BDDFFF;
+}
+
 div.post_izq {
 	width: 450px;
 	float: left;
@@ -137,6 +174,14 @@ p.post {
 
 div.post_contenido {
 	height: 63px;
+	width: 10px;
+	margin-right: 15px;
+	float: left;
+	background-color: #156C95;
+}
+
+div.post_contenido_completo {
+	height: 163px;
 	width: 10px;
 	margin-right: 15px;
 	float: left;
@@ -197,6 +242,60 @@ textarea.campo_formulario {
 }
 .boton_generico:hover {
 	background-color: #333333;
+}
+
+div.campo_formulario {
+	position: relative;
+	clear: both;
+	width: 760px;
+}
+
+input.campo_formulario {
+	position: relative;
+	width: 255px;
+	left: 5px;
+	padding: 8px;
+	
+	border-style: dotted;
+	border-color: #000000;
+	border-width: 2px;
+}
+
+textarea.campo_formulario {
+	position: relative;
+	margin-bottom: 10px;
+	width: 575px;
+	left: 5px;
+	padding: 9px;
+	
+	border-style: dotted;
+	border-color: #000000;
+	border-width: 2px;
+}
+
+div.texto_campo {
+	position: relative;
+	float: left;
+	width: 150px;
+	margin-bottom: 22px;
+}
+
+p.texto_formulario_grande {
+	margin: 0px;
+	text-align: right;
+	font-family: Arial, Helvetica, sans-serif;
+	font-size: 20px;
+	letter-spacing: 1px;
+	color: #333;
+}
+
+p.texto_formulario_peque {
+	margin: 0px;
+	text-align: right;
+	font-family: Arial, Helvetica, sans-serif;
+	font-size: 11px;
+	letter-spacing: 1px;
+	color: #333;
 }
 
 

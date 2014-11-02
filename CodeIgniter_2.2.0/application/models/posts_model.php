@@ -7,14 +7,21 @@ class Posts_model extends CI_Model {
 	
 	
 	public function get_posts($id_post = FALSE) {
+		
+		//$this->db->select('post.id_post', 'post.titulo', 'post.contenido', 'post.create_time', 'post.status', 'usuario.username');
+		$this->db->select('*');
+		$this->db->from('post');
+		$this->db->join('usuario', 'post.email_creador = usuario.email', 'inner');
+			
 		if ($id_post === FALSE) {
 			// todos los posts
-			$query = $this->db->get('post');
+			$query = $this->db->get();
 			return $query->result_array();
 			
 		} else {
 			// un post
-			$query = $this->db->get_where('post', array('status' => 'p'));
+			$this->db->where('post.id_post', $id_post); 
+			$query = $this->db->get();
 			return $query->row_array();
 		}
 	}
@@ -25,7 +32,7 @@ class Posts_model extends CI_Model {
 			'titulo' => $this->input->post('titulo'),
 			'contenido' => $this->input->post('contenido'),
 			'status' => 'b', // borradores
-			'email_creador' => ''
+			'email_creador' => 'joan.g.florit@gmail.com'
 		);
 	
 		return $this->db->insert('post', $data);
