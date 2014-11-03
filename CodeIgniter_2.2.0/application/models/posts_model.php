@@ -71,4 +71,16 @@ class Posts_model extends CI_Model {
 		return  $insert_id;
 	}
 	
+	
+	/*
+	 * actualiza el estado de un post
+	 */
+	public function update_post($id_post, $status) {
+		$data = array(
+			'status' => $status
+		);
+		$this->db->where('id_post', $id_post);
+		$this->db->update('post', $data);
+	}
+	
 }

@@ -50,7 +50,7 @@ $active_record = TRUE;
 
 $db['default']['hostname'] = 'alumnes-ltim.uib.es';
 $db['default']['username'] = 'jflorit';
-$db['default']['password'] = '***';
+$db['default']['password'] = 'j0anNFC';
 $db['default']['database'] = 'jflorit_prueba_blog';
 $db['default']['dbdriver'] = 'mysql';
 $db['default']['dbprefix'] = '';
