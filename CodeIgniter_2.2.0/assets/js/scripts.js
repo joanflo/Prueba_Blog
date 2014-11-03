@@ -1,3 +1,6 @@
+
+/* script modal dialog */
+
 $(function() {
 	
 	var dialog,
@@ -97,6 +100,19 @@ $(function() {
  
     $("#link_postcreate").on("click", function() {
 		dialog.dialog("open");
+    });
+    
+    
+    $("#estado_post").on("change", function() {
+		$.ajax({
+			type:'POST',
+            url:base_url + 'index.php/posts/update',
+            data:{'id_post': $('#input_id_post').val(), 'status':$(this).val()},
+            success:function(data) {
+                // actualizar GUI
+                window.location = base_url + "index.php/posts/1";
+            }
+        });
     });
     
 });

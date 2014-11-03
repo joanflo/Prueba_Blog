@@ -14,7 +14,7 @@
 						$nombre_icono = 'borradores';
 						break;
 					case 'p':
-						$nombre_icono = 'publico';
+						$nombre_icono = 'público';
 						break;
 					case 'c':
 						$nombre_icono = 'censurado';

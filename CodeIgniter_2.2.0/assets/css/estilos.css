@@ -29,10 +29,20 @@ input.text_dialogo {
 	padding: .4em;
 }
 
-fieldset {
+#fieldset_dialogo {
 	padding: 0;
 	border:0;
 	margin-top:25px;
+}
+
+#fieldset_menu {
+	border:0;
+	float: right;
+	width: 100px;
+}
+
+select {
+	width: 100px;
 }
 
 .ui-dialog .ui-state-error {

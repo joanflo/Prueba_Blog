@@ -41,6 +41,7 @@
 
 $route['posts/create'] = 'blog/create';
 $route['posts/verify'] = 'blog/verify';
+$route['posts/update'] = 'blog/update';
 $route['posts/(:any)'] = 'blog/view/$1';
 $route['posts'] = 'blog';
 $route['(:any)'] = 'pages/view/$1';

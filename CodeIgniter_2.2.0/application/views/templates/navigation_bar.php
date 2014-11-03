@@ -29,7 +29,7 @@
 	<p class="validateTips">Rellenar datos de acceso.</p>
  
 	<?php echo form_open('usuarios/verify') ?>
-		<fieldset>
+		<fieldset id="fieldset_dialogo">
 			<label class="dialogo" for="username">Username</label>
 			<input type="text" name="username" id="username" class="dialogo text_dialogo ui-widget-content ui-corner-all">
 			<label class="dialogo" for="password">Password</label>

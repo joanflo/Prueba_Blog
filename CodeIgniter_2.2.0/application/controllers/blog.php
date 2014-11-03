@@ -102,4 +102,14 @@ class Blog extends CI_Controller {
 		}
 	}
 	
+	
+	public function update() {
+		$data['title'] = 'Posts';
+		
+		// llamamos modelo
+		$id_post = $this->input->post('id_post');
+		$status = $this->input->post('status');
+		$this->posts_model->update_post($id_post, $status);
+	}
+	
 }
