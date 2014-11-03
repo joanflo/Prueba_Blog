@@ -6,11 +6,14 @@ class Usuarios_model extends CI_Model {
 	}
 	
 	
+	/*
+	 * Comprueba si el nombre de usuario y contraseña existen en la base de datos
+	 */
 	function login($username, $password) {
-		$this->db->select('email, username, password');
+		$this->db->select('email, username, password, status');
 		$this->db->from('usuario');
 		$this->db->where('username', $username);
-		//$this->db->where('password', MD5($password));
+		$this->db->where('password', MD5($password));
 		$this->db->limit(1);
 		
 		$query = $this->db->get();

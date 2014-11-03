@@ -77,19 +77,25 @@ $(function() {
  
  
 	form = dialog.find("form").on("submit", function(event) {
-		// llamamos al controlador de codeigniter desde javascript
+		// llamamos al controlador de codeigniter desde javascript -> loggearse
 		$.ajax({
 			type:'POST',
-            url:'blog/verify',
+            url:base_url + 'index.php/posts/verify',
             data:{'username':username.val(), 'password':password.val()},
             success:function(data) {
-                window.alert('guay!' + data + ' - ' + username.val());
+                // actualizar GUI
+				window.location = base_url + "index.php/posts";
             }
         });
     });
     
  
     $("#log").on("click", function() {
+		dialog.dialog("open");
+    });
+    
+ 
+    $("#link_postcreate").on("click", function() {
 		dialog.dialog("open");
     });
     

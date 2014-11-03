@@ -26,7 +26,7 @@
 		<div id="content">
 			
 			<header class="cabezera">
-				<a href="posts">
+				<a href="<?php echo base_url(); ?>index.php/posts">
 					<img class="cabezera" src="<?php echo base_url(); ?>/assets/images/logo.jpg" alt="Logotipo del blog">
 				</a>
 				

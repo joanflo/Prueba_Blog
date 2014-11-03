@@ -39,10 +39,10 @@
 */
 
 
-$route['blog/create'] = 'blog/create';
-$route['blog/verify'] = 'blog/verify';
-$route['blog/(:any)'] = 'blog/view/$1';
-$route['blog'] = 'blog';
+$route['posts/create'] = 'blog/create';
+$route['posts/verify'] = 'blog/verify';
+$route['posts/(:any)'] = 'blog/view/$1';
+$route['posts'] = 'blog';
 $route['(:any)'] = 'pages/view/$1';
 $route['default_controller'] = 'pages/view';
 

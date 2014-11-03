@@ -11,7 +11,7 @@ class Blog extends CI_Controller {
 		$this->load->model('usuarios_model');
 	}
 	
-
+	
 	/*
 	 * Muestra todos los posts
 	 */
@@ -20,6 +20,7 @@ class Blog extends CI_Controller {
 		$data['title'] = "Posts";
 		$data['creating_post'] = False;
 		
+		// cargar vistas
 		$this->load->view('templates/header', $data);
 		$this->load->view('templates/navigation_bar');
 		$this->load->view('posts/index', $data);
@@ -38,7 +39,8 @@ class Blog extends CI_Controller {
 		
 		$data['title'] = 'Post nº' . $id_post . ' (' . $data['posts_item']['titulo'] . ')';
 		$data['creating_post'] = False;
-	
+		
+		// cargar vistas
 		$this->load->view('templates/header', $data);
 		$this->load->view('templates/navigation_bar');
 		$this->load->view('posts/view', $data);
@@ -56,7 +58,7 @@ class Blog extends CI_Controller {
 		// reglas para los campos del formulario
 		$this->form_validation->set_rules('titulo', 'título', 'required');
 		$this->form_validation->set_rules('contenido', 'contenido del post', 'required');
-	
+		
 		if ($this->form_validation->run() === FALSE) {
 			// mostramos formulario
 			$this->load->view('templates/header', $data);
@@ -66,9 +68,9 @@ class Blog extends CI_Controller {
 			
 		} else {
 			// llamamos modelo
-			$this->posts_model->set_posts();
+			$insert_id = $this->posts_model->set_posts();
 			
-			$this->load->view('posts/success');
+			redirect('posts/' . $insert_id, 'refresh');
 		}
 	}
 	
@@ -76,36 +78,28 @@ class Blog extends CI_Controller {
 	public function verify() {
 		$data['title'] = 'Posts';
 		
-		// llamamos modelo
-		$username = $this->input->post('username');
-		$password = $this->input->post('password');
-		$result = $this->usuarios_model->login($username, $password);
-		
-		if ($result) {
-			// guardamos en variable de sesión
-			foreach($result as $row) {
-				$sess_array = array(
-					'id' => $row->email,
-					'username' => $row->username
-				);
-				$this->session->set_userdata('logged_in', $sess_array);
+		if (!$this->session->userdata('logged_in')) { // usuario no loggeado -> introducir datos
+			// llamamos modelo
+			$username = $this->input->post('username');
+			$password = $this->input->post('password');
+			$result = $this->usuarios_model->login($username, $password);
+			
+			if ($result) {
+				// guardamos en variable de sesión
+				foreach($result as $row) {
+					$sess_array = array(
+						'id' => $row->email,
+						'username' => $row->username,
+						'status' => $row->status
+					);
+					$this->session->set_userdata('logged_in', $sess_array);
+				}
 			}
-			$this->load->view('templates/footer');
-		} else {
-			$this->load->view('templates/footer');
-			$this->load->view('templates/footer');
+			
+		} else { // usuario loggeado -> salir
+			$this->session->unset_userdata('logged_in');
+			redirect('posts', 'refresh');
 		}
-		
-		$this->load->view('templates/header', $data);
-		$this->load->view('templates/navigation_bar');
-		$this->load->view('posts/index', $data);
-		$this->load->view('templates/footer');
-	}
-
-
-	public function logout() {
-		$this->session->unset_userdata('logged_in');
-		session_destroy();
 	}
 	
 }
