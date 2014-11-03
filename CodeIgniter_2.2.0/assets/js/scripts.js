@@ -110,7 +110,7 @@ $(function() {
             data:{'id_post': $('#input_id_post').val(), 'status':$(this).val()},
             success:function(data) {
                 // actualizar GUI
-                window.location = base_url + "index.php/posts/1";
+                window.location = base_url + "index.php/posts/" + $('#input_id_post').val();
             }
         });
     });
