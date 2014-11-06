@@ -5,9 +5,18 @@
 
 		<title><?php echo $title; ?></title>
 		<meta name="author" content="Joanflo">
-		
+		<meta name="viewport" content="width=device-width; initial-scale=1.0; maximum-scale=1.0; user-scalable=0;" />
+				
 		<!-- estilos -->
-		<link rel="stylesheet" href="<?php echo base_url(); ?>assets/css/estilos.css" type="text/css" media="screen">
+		<?php
+			if ($is_mobile) {
+				$css_path = 'mobile';
+			} else {
+				$css_path = 'desktop';
+			}
+		?>
+		<link rel="stylesheet" href="<?php echo base_url(); ?>assets/css/estilos-<?php echo $css_path; ?>.css" type="text/css" media="screen">
+		
 		<link rel="stylesheet" href="<?php echo base_url(); ?>assets/jquery-ui-1.11.2/jquery-ui.min.css" type="text/css" media="screen">
 		<link rel="stylesheet" href="<?php echo base_url(); ?>assets/jquery-ui-1.11.2/jquery-ui.structure.min.css" type="text/css" media="screen">
 		<link rel="stylesheet" href="<?php echo base_url(); ?>assets/jquery-ui-1.11.2/jquery-ui.theme.min.css" type="text/css" media="screen">
@@ -52,8 +61,8 @@
 					</div>
 					<div class="icono">
 						<img class="icono" src="<?php echo base_url(); ?>/assets/images/smartphone.png" alt="Marca y modelo">
-						<p class="icono icono1"><b>marca</b></p>
-						<p class="icono icono2">modelo</p>
+						<p class="icono icono1"><b><?php echo $brandname; ?></b></p>
+						<p class="icono icono2"><?php echo $modelname; ?></p>
 					</div>
 				</div>
 			</header>

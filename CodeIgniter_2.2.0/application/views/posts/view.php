@@ -48,6 +48,12 @@
 			
 		</div>
 		
+		<?php
+			if ($is_mobile) {
+				echo '<br /><br /><br />';
+			}
+		?>
+		
 		<div class="post_der">
 			<div class="icono">
 				<img class="icono" src="<?php echo base_url(); ?>/assets/images/calendar.png" alt="Fecha creación">

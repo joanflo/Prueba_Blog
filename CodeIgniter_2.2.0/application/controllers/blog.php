@@ -6,6 +6,7 @@ class Blog extends CI_Controller {
 		parent::__construct();
 		$this->load->helper('form');
 		$this->load->library('form_validation');
+		$this->load->library('Wurflutils');
 		// cargar modelos usados
 		$this->load->model('posts_model');
 		$this->load->model('usuarios_model');
@@ -19,6 +20,9 @@ class Blog extends CI_Controller {
 		$data['posts'] = $this->posts_model->get_posts();
 		$data['title'] = "Posts";
 		$data['creating_post'] = False;
+		$data['is_mobile'] = $this->is_mobile();
+		$data['brandname'] = $this->get_brandname();
+		$data['modelname'] = $this->get_modelname();
 		
 		// cargar vistas
 		$this->load->view('templates/header', $data);
@@ -39,6 +43,9 @@ class Blog extends CI_Controller {
 		
 		$data['title'] = 'Post nº' . $id_post . ' (' . $data['posts_item']['titulo'] . ')';
 		$data['creating_post'] = False;
+		$data['is_mobile'] = $this->is_mobile();
+		$data['brandname'] = $this->get_brandname();
+		$data['modelname'] = $this->get_modelname();
 		
 		// cargar vistas
 		$this->load->view('templates/header', $data);
@@ -54,6 +61,9 @@ class Blog extends CI_Controller {
 	public function create() {
 		$data['title'] = 'Nuevo post';
 		$data['creating_post'] = True;
+		$data['is_mobile'] = $this->is_mobile();
+		$data['brandname'] = $this->get_brandname();
+		$data['modelname'] = $this->get_modelname();
 		
 		// reglas para los campos del formulario
 		$this->form_validation->set_rules('titulo', 'título', 'required');
@@ -63,7 +73,7 @@ class Blog extends CI_Controller {
 			// mostramos formulario
 			$this->load->view('templates/header', $data);
 			$this->load->view('templates/navigation_bar', $data);
-			$this->load->view('posts/create');
+			$this->load->view('posts/create', $data);
 			$this->load->view('templates/footer');
 			
 		} else {
@@ -75,6 +85,11 @@ class Blog extends CI_Controller {
 	}
 	
 	
+	/*
+	 * Comprueba si los datos introducidos por el usuario en el login son válidos. En cuyo caso, los guarda
+	 * en una variable de sesión.
+	 * Si el usuario ya estaba loggeado, se cierra su sesión.
+	 */
 	public function verify() {
 		$data['title'] = 'Posts';
 		
@@ -103,6 +118,9 @@ class Blog extends CI_Controller {
 	}
 	
 	
+	/*
+	 * Actualiza el status de un post
+	 */
 	public function update() {
 		$data['title'] = 'Posts';
 		
@@ -111,5 +129,29 @@ class Blog extends CI_Controller {
 		$status = $this->input->post('status');
 		$this->posts_model->update_post($id_post, $status);
 	}
+	
+	
+	/*
+	 * Llama a la librería WURFL para saber si el dispositivo que nos visita es un móvil
+	 */
+	 private function is_mobile() {
+	 	return $this->wurflutils->is_mobile();
+	 }
+	
+	
+	/*
+	 * Llama a la librería WURFL para obtener el nombre de la marca de móvil
+	 */
+	 private function get_brandname() {
+	 	return $this->wurflutils->get_brandname();
+	 }
+	 
+	 
+	 /*
+	 * Llama a la librería WURFL para obtener el nombre del modelo de móvil
+	 */
+	 private function get_modelname() {
+	 	return $this->wurflutils->get_modelname();
+	 }
 	
 }
